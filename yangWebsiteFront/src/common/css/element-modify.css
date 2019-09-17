@@ -1,0 +1,5 @@
+
+/*Header组件*/
+#header .el-menu-item i, #header .el-submenu__title i{
+	color: #fff;
+}
