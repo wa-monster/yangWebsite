@@ -26,17 +26,21 @@
 		padding: 0;
 		background-color: rgb(245,245,245);
 		overflow-x: hidden;
+		height: 100%;
+		height: 100%;
 	}
 	#app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
 		color: #2c3e50;
 		min-width: 1000px;
 		height: 100%;
 	}
 	.el-scrollbar__wrap{
 		overflow-x: hidden;
+	}
+	.el-scrollbar__view{
+		height: 100%;
 	}
 </style>

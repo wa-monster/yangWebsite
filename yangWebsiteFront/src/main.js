@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import ElementUI from 'element-ui'
+import  "babel-polyfill"
 
 import 'element-ui/lib/theme-chalk/index.css'
 import './common/css/element-modify.css'
@@ -9,15 +10,20 @@ import './common/css/reset.css'
 
 import App from './App'
 import router from './router'
+import store from './store'
+import api from './api/jiekou'
 
 Vue.config.productionTip = false
-
+Vue.prototype.$api = api
 Vue.use(ElementUI)
+
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+	store,
   components: { App },
   template: '<App/>'
 })
