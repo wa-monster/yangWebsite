@@ -8,8 +8,9 @@
 	import tinymce from 'tinymce/tinymce'
 	import 'tinymce/themes/modern/theme'
 	import Editor from '@tinymce/tinymce-vue'
-	import 'tinymce/plugins/image'
+	// import 'tinymce/plugins/image'
 	import 'tinymce/plugins/link'
+	import 'tinymce-imageupload'
 
 	export default {
 		name: "NewNote",
