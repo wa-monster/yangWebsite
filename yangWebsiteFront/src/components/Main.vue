@@ -68,9 +68,9 @@
 		created(){
 			let {pageSize, pageIndex} = this
 			this.doGetNote({pageSize,pageIndex})
-			this.$api.testMongoose().then(res=>{
-				console.log(res)
-			})
+			// this.$api.testMongoose().then(res=>{
+			// 	console.log(res)
+			// })
 		},
 		computed:{
 			...mapState(['a','b','c'])
@@ -93,8 +93,8 @@
 						this.$message.error(res.msg);
 						return;
 					}
-					this.total = res.total;
-					this.dataList = res.data;
+					this.total = res.data.total;
+					this.dataList = res.data.noteList;
 				})
 			},
 			changePageIndex(pageIndex){

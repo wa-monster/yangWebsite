@@ -8,7 +8,7 @@
 				<el-input v-model="loginForm.password" type="password"></el-input>
 			</el-form-item>
 			<el-form-item class="login-btn-box">
-				<el-button type="primary" icon="el-icon-finished">登陆</el-button>
+				<el-button type="primary" icon="el-icon-finished" @click="login">登陆</el-button>
 			</el-form-item>
 			<el-link type="primary" class="to-register">立即注册</el-link>
 		</el-form>
@@ -32,6 +32,18 @@
 						{required:true, message:'请输入密码', trigger:"blur"},
 					]
 				}
+			}
+		},
+		methods:{
+			login(){
+				this.$api.doLogin(this.loginForm).then(res=>{
+					if(!res.success){
+						this.$message.error(res.msg);
+						return;
+					}
+					localStorage.setItem('yangToken',res.data.token);
+					this.$router.push('/home')
+				})
 			}
 		}
 	}

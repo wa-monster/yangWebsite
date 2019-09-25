@@ -6,11 +6,15 @@ router.get('/', async (ctx, next) => {
   })
 });
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-});
+//新技术单独走一条线
+router.get('/New/:id', async (ctx, next)=>{
 
-router.use('/api',require('./api').routes())
+})
+//接口api
+router.use('/api',require('./api').routes());
+
+
+
 
 
 module.exports = router;

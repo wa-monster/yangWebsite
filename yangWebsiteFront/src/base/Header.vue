@@ -74,7 +74,7 @@
 		},
 		created(){
 			let token = localStorage.getItem('yangToken');
-			if(!token){
+			if(token){
 				this.isLogin = true;
 			}
 		},
@@ -94,6 +94,7 @@
 					localStorage.removeItem('token')
 					return
 				}
+				console.log(this.$router.push)
 				this.$router.push(command)
 				console.log('打印点击的对应的路由：' + command)
 			},

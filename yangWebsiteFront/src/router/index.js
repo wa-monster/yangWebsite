@@ -12,10 +12,12 @@ import AddUser from '@/base/AddUser'
 /**
  * 对vue-router3.0以上版本点击当前相同网址做错误处理
  * */
-// const originalPush = Router.prototype.push;
-// Router.prototype.push =  function (location) {
-// 	return orginalPush.call(this, location).catch(err=>err)
-// };
+
+const originPush = Router.prototype.push;
+Router.prototype.push2 = originPush;
+Router.prototype.push =  function (location) {
+	return Router.prototype.push2.call(this, location).catch(err=>err)
+};
 
 
 Vue.use(Router)
