@@ -7,7 +7,7 @@ module.exports = {
 		}
 		resObj.code = status;
 		function addsuc(suc) {
-			resObj.success = data;
+			resObj.success = suc;
 		}
 		function addmsg(msg) {
 			resObj.msg = msg;

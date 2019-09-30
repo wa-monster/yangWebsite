@@ -5,10 +5,10 @@
 				<div class="new-info">
 					<h3>最新的小婊贝儿们</h3>
 				</div>
-				<el-row v-for="(item, index) in dataList" :key="index" class="eassy-list">
-					<el-card class="eassy-card">
+				<el-row v-for="(item, index) in dataList" :key="item._id" class="eassy-list">
+					<el-card class="eassy-card" @click.native="goToNote(item._id)">
 						<el-col :span="8" class="item-img">
-							<el-image :src="item.imgUrl" fit="cover"></el-image>
+							<el-image :src="item.imgURL" fit="cover"></el-image>
 						</el-col>
 						<el-col :span="16" class="item-description">
 							<div class="item-title">
@@ -88,18 +88,23 @@
 				cc:'C'
 			}),
 			doGetNote(params){
-				this.$api.getHomeNotes(params).then(res=>{
+				// findpublishnote
+				this.$api.findPublishNote().then(res=>{
 					if(!res.success){
-						this.$message.error(res.msg);
+						this.$alert(res.msg,"系统提示");
 						return;
 					}
 					this.total = res.data.total;
-					this.dataList = res.data.noteList;
+					this.dataList = res.data;
 				})
 			},
 			changePageIndex(pageIndex){
 				let pageSize = this.pageSize;
 				this.doGetNote({pageSize,pageIndex})
+			},
+			goToNote(xid){
+				console.log(xid)
+				this.$router.push({path:'/note',query:{id:xid}})
 			}
 		}
 	}
@@ -108,7 +113,7 @@
 <style scoped>
 	#main{
 		width: 1200px;
-		margin: 0 auto 40px;
+		margin: 0 auto 0px;
 		min-height: calc(100% - 96px);
 	}
 	.new-info{

@@ -23,10 +23,27 @@ const api = {
 			params,
 		})
 	},
+	testNew:function(){
+		return axios.get('//localhost:3000/New/adf')
+	},
+	//查询保存的文章
+	findSaveNote:function () {
+		return axios.get(baseUrl.develop + '/findsavenote')
+	},
+	//查询发布的文章
+	findPublishNote:function () {
+		return axios.get(baseUrl.develop + '/findpublishnote')
+	},
 	//添加文章
-	addNote:function (params) {
+	publishNote:function (params) {
 		return axios.post(baseUrl.develop + '/addnote',{
-			params
+			params,
+		})
+	},
+	//添加文章
+	saveNote:function (params) {
+		return axios.post(baseUrl.develop + '/savenote',{
+			params,
 		})
 	},
 	//登陆

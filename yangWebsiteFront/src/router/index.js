@@ -4,6 +4,7 @@ import Main from '@/components/Main'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Manager from '@/components/Manager'
+import Note from '@/components/Note'
 import My from '@/base/My'
 import NewNote from '@/base/NewNote'
 import AddUser from '@/base/AddUser'
@@ -64,5 +65,10 @@ export default new Router({
 				},
 			]
 		},
+		{
+			path: '/note',
+			name: 'Note',
+			component: Note
+		}
   ]
 })
