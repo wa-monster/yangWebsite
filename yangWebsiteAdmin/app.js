@@ -23,9 +23,21 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
+//动态设置，不同路由走不同文件
+// app.use('/New/:id',require('koa-static')(__dirname + '/public/:id'))
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
+
+// //动态设置静态路径
+// app.use(async (ctx, next) => {
+// 	if(ctx.url.indexOf('New/') !== -1){
+//
+// 	}
+// 	await next();
+// 	ctx.response.body = 'Hello, koa2!';
+// });
+
 
 // logger
 app.use(async (ctx, next) => {

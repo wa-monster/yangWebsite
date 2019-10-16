@@ -1,11 +1,365 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>EJS Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新设列表</title>
+    <link rel="stylesheet" type="text/css" href="./plugin/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./plugin/dataTables/dataTables.bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./plugin/dataTables/dataTables-modify.css">
+    <link rel="stylesheet" href="./plugin/citypicker/css/city-picker.css">
+    <link rel="stylesheet" href="./css/topNet.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <!-- 搜索条件 -->
+    <div class="multiple_conditions-wrap">
+        <div class="multiple_conditions-box">
+            <div class="el-row">
+                <div class="el-col-2 deal_btn">
+                    <button class="el-btn el-btn-minor medium"><i class="icon-plus"></i>窗口新设业务办理</button>
+                </div>
+                <div class="el-col-4">
+                    <div class="form-item-content vertical">
+                        <span class="input-addon">企业名称</span>
+                        <div class="el-input">
+                            <input type="text" class="form-field medium" autocomplete="off" placeholder="示例：北京拓普丰联信息工程有限公司">
+                        </div>
+                    </div>
+                </div>
+                <div class="el-col-3">
+                    <div class="input-group vertical">
+                        <span class="input-addon required">文号</span>
+                        <div class="el-input">
+                            <input type="text" class="form-field medium" autocomplete="off" placeholder="示例：1000">
+                        </div>
+                    </div>
+                </div>
+                <div class="el-col-3 btns">
+                    <button style=" margin-right: 15px;" id='search' class="el-btn el-btn-primary medium"><i class="icon-search"></i><span>搜索</span></button>
+                    <button id="showMore" class="showMore el-btn el-btn-primary plain medium">
+                        <span>高级搜索</span><i class="icon-d-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="multiple_conditions-more">
+                <div class="el-row">
+                    <div class="input-group vertical" style='width: 22%;'>
+                        <span class="input-addon required">申请人</span>
+                        <div class="el-input">
+                            <input type="text" class="form-field medium" autocomplete="off" placeholder="示例：李某某">
+                        </div>
+                    </div>
+                    <div class="input-group vertical" style='width: 25%;'>
+                        <span class="input-addon required">证件号码</span>
+                        <div class="el-input">
+                            <input type="text" class="form-field medium" autocomplete="off" placeholder="示例：410181************">
+                        </div>
+                    </div>
+                    <!-- <div class="input-group vertical" style='width: 15%;'>
+                        <span class="input-addon required">注册资本</span>
+                        <div class="el-input">
+                            <div class="select medium" id="select"></div>
+                        </div>
+                    </div> -->
+                    <div class="input-group vertical" style='width:25%'>
+                        <span class="input-addon required">住所区划</span>
+                        <div style='position: relative;'>
+                            <input id="city" readonly type="text">
+                        </div>
+                    </div>
+                    <div class="input-group vertical" style='width: 22%;'>
+                        <span class="input-addon required">来源</span>
+                        <div class="el-input">
+                            <div class="select medium" id="select1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 列表 -->
+    <div class='newlist newlist2'>
+        <div class="company_table">
+            <table class="table table-bordered table-striped table_layout_f dataTable no-footer" id="dataTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>企业名称</th>
+                        <th>状态</th>
+                        <th>申请人</th>
+                        <th>来源</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+        <div class="company_info pos_right">
+            <div class="title"><b>文号</b> (北京)登记内设字[2019]第1号</div>
+            <div class="main">
+                <ul>
+                    <li>
+                        <span class="name">企业名称</span>
+                        <span class="value">北京拓普丰联信息工程有限公司</span>
+                    </li>
+                    <li>
+                        <span class="name">字号</span>
+                        <span class="value">拓普丰联</span>
+                    </li>
+                    <li>
+                        <span class="name">企业类型</span>
+                        <span class="value">有限责任公司</span>
+                    </li>
+                    <li>
+                        <span class="name">行业类型</span>
+                        <span class="value">[0111]稻谷种植</span>
+                    </li>
+                    <li>
+                        <span class="name">集团名称</span>
+                        <span class="value">北京拓普丰联信息工程集团</span>
+                    </li>
+                    <li>
+                        <span class="name">集团简称</span>
+                        <span class="value">拓普集团</span>
+                    </li>
+                    <li>
+                        <span class="name">联系电话</span>
+                        <span class="value">15836903690</span>
+                    </li>
+                    <li>
+                        <span class="name">住所</span>
+                        <span class="value">河南省郑州市金水区杨金路199号河南新科技市场7号楼</span>
+                    </li>
+                </ul>
+                <div style='text-align: right;'>
+                    <button class='el-btn el-btn-primary medium'>下一步</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./plugin/dataTables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="./plugin/dataTables/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="./plugin/citypicker/js/city-picker.data.min.js"></script>
+<script type="text/javascript" src="./plugin/citypicker/js/city-picker.js"></script>
+<script type="text/javascript" src="js/topNet.js"></script>
+<script type="text/javascript" src="js/placeholder.js"></script>
+<script type="text/javascript">
+    // 搜索条件
+    $("#showMore").click(function () {
+        console.log('click')
+        var $more = $(this).parents('.multiple_conditions-wrap');
+        if($more.find(".multiple_conditions-box").hasClass("open")){
+            $more.find(".multiple_conditions-box").removeClass("open");
+            $(this).children().removeClass("reverse");
+        }else {
+            $more.find(".multiple_conditions-box").addClass("open");
+            $(this).children().addClass("reverse");
+        }
+    })
+    var sData = [
+        {id: 1, name: "100万元"},
+        {id: 2, name: "500万元"},
+        {id: 3, name: "1000万元"}
+    ]
+    // 注册资本
+    $('#select').topNetSelect({
+        data: sData,
+        inputName:'amt', //下拉框input name属性
+        placeholder: '示例：100万元'
+    })
+    var sData1 = [
+        {id: 1, name: "窗口大厅"},
+        {id: 2, name: "官网"},
+        {id: 3, name: "来源"}
+    ]
+    // 来源
+    $('#select1').topNetSelect({
+        data: sData1,
+        inputName:'from', //下拉框input name属性
+        placeholder: '示例：窗口大厅'
+    })
+    // 省市联动
+    $('#city').citypicker({
+        province: '河南省', //默认显示省
+        city: '郑州市',     //默认显示市
+        optionStyle: 'vertical',
+        provinceShowOne: true,
+    })
+
+    // 表格列表
+    var data = [
+        {
+            "name": "北京拓普丰联信息工程有限公司", 
+            "status": "1", 
+            "user": "白敬亭1", 
+            "idcard": "412723200012210001", 
+            "registeredCapital": "100万元", 
+            "address": "金水区", 
+            "from": "窗口大厅", 
+            "date": "2019-5-30", 
+            "docNum": "(北京)登记内设字[2019]第1号",
+        },
+        {"name": "北京拓普丰联信息工程有限公司", "status": "2", "user": "白敬亭2", "idcard": "412723200012210002", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第2号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "3", "user": "白敬亭3", "idcard": "412723200012210003", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第3号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "4", "user": "白敬亭4", "idcard": "412723200012210004", "registeredCapital": "1000万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第4号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "1", "user": "白敬亭5", "idcard": "412723200012210005", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第5号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "2", "user": "白敬亭6", "idcard": "412723200012210006", "registeredCapital": "500万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第6号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "3", "user": "白敬亭7", "idcard": "412723200012210007", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第7号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "4", "user": "白敬亭8", "idcard": "412723200012210008", "registeredCapital": "1000万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第8号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "1", "user": "白敬亭9", "idcard": "412723200012210009", "registeredCapital": "500万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第9号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "2", "user": "白敬亭10", "idcard": "412723200012210010", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第10号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "3", "user": "白敬亭11", "idcard": "412723200012210011", "registeredCapital": "100万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第11号",},
+        {"name": "北京拓普丰联信息工程有限公司", "status": "4", "user": "白敬亭12", "idcard": "412723200012210012", "registeredCapital": "500万元", "address": "金水区", "from": "窗口大厅", "date": "2019-5-30", "docNum": "(北京)登记内设字[2019]第12号",},
+    ];
+        //object可以如下初始化表格
+    $('#dataTable').dataTable({
+        dom: 'lrt<"row table_bottom"<"col-sm-4"i><"col-sm-8"p>>',    //lfrtip
+        data: data,
+        lengthChange: false,
+        searching: true,
+        ordering: false,
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        createdRow: function( row, data, dataIndex ) {
+            // 初始化给第一行添加类
+            if(dataIndex == 0){
+                $(row).addClass('highlight');
+            }
+            //点击row逻辑
+            $(row).click(function () {
+                $(this).addClass('highlight').siblings().removeClass('highlight')
+                $('.company_info').find('.title').html('<b>文号</b> ' + data.docNum)
+            });
+        },
+        columns: [
+            {   
+                data: 'status',
+                width: '40px',
+                render: function (data, type, row) {
+                    var obj = {
+                        1: 'red',
+                        2: 'yellow',
+                        3: 'blue',
+                        4: 'yellow'
+                    }
+                    return '<span class="icon-s-flag" style="color: '+obj[data]+'"></span>'
+                }
+            },
+            { 
+                data: 'name',
+                width: '180px',
+                class: 'show_tip',
+                render: function(data, type, row){
+                    var tipInfo = '<div class="tipInfo"><p>' + data + '</p><i class="icon-close"></i></div>'
+                    return '<span class="ellipsis">'+data+'</span><i style="display:none" class="showBtn icon-caret-bottom"></i>' + tipInfo
+                },
+                createdCell:function (cell, cellData, rowData, rowIndex, colIndex){
+                    // 显示查看省略内容按钮
+                    $(cell).on('mouseover', function(){
+                        $(this).find('.showBtn').show()
+                    })
+                    $(cell).on('mouseout', function(){
+                        if($(this).find('.tipInfo').is(':hidden')){
+                            $(this).find('.showBtn').hide()
+                        }
+                    })
+                    // 显示省略内容
+                    $(cell).on('click', 'i.showBtn', function(e){
+                        
+                        var tipH = $(this).siblings('.tipInfo').outerHeight()
+                        console.log($('#dataTable_paginate'))
+                        console.log($('#dataTable_paginate').offset())
+                        var cellTop = $(this).parents('.show_tip').offset().top
+                        var paginateTop = $('#dataTable_paginate').offset().top;
+                        // 靠近表格底部的行，tipInfo显示在cell上方
+                        if(tipH + cellTop > paginateTop - 12){
+                            $(this).siblings('.tipInfo').css('top', -tipH);
+                        }
+                        if($(this).hasClass('icon-caret-top')){
+                            $(this).removeClass('icon-caret-top').siblings('.tipInfo').hide()
+                        }else{
+                            // 打开时，先关闭其他已经打开的tipInfo
+                            $('.tipInfo').hide().siblings('.showBtn').hide().removeClass('icon-caret-top');
+                            $(this).addClass('icon-caret-top').siblings('.tipInfo').show()
+                        }
+                    })
+                    // 关闭省略内容
+                    $(cell).on('click', '.tipInfo .icon-close', function(){
+                        $(this).parent().hide();
+                        $(cell).find('.showBtn').removeClass('icon-caret-top')
+                    })
+                    // 点击其他地方，关闭省略内容
+                    $(document).on('click', function (e) {
+                        if(cell && !cell.contains(e.target)){
+                            $(cell).find('.tipInfo').hide().siblings('.showBtn').hide().removeClass('icon-caret-top');
+                        }
+                    });
+                }
+            },
+            { 
+                data: 'status',
+                render: function (data, type, row) {
+                    var obj = {
+                        1: '未受理',
+                        2: '受理未签名',
+                        3: '已受理',
+                        4: '审核未签名'
+                    }
+                    return '<span>'+obj[data]+'</span>'
+                }
+            },
+            { data: 'user' },
+            { data: 'from' },
+            { 
+                data: null,
+                width:'38%',
+                render: function (data, type, row) {
+                    return ''
+                },
+            },
+        ],
+        language: {
+            lengthMenu: '每页显示&nbsp;_MENU_', //左上角的分页大小显示。
+            paginate: { //分页的样式内容。
+                previous: "上一页",
+                next: "下一页",
+                first: "首页",
+                last: "末页",
+            },
+            zeroRecords: "没有内容", //table tbody内容为空时，tbody的内容。
+            info: "共  <span class='info-active'> _TOTAL_ </span> 条记录， 共   <span class='info-active'>_PAGES_ </span>页", //左下角的信息显示，大写的词为关键字。
+            infoEmpty: "0条记录", //筛选为空时左下角的显示。
+            infoFiltered: "" //筛选之后的左下角筛选提示，
+        },
+        drawCallback: function () {  
+            appendSkipPage('#dataTable');
+        }
+    });
+    // 分页
+    function appendSkipPage(tableId) {  
+        var oTable = $(tableId).dataTable();
+        $('.paginate_jump').remove();
+        var node=  
+            $("<li class='paginate_jump active'>" +  
+            "   <div class='input-go'>" +  
+            "       转到 <input type='text' /> 页" +  
+            "       <span class='go'>GO</span>" +   
+            "   </div>" +  
+            "</li>");  
+    
+        node.find(".go").click(function(){
+            paginateValue = $(this).siblings('input').val()
+            if(paginateValue && paginateValue>=1){
+                oTable.fnPageChange( parseInt(paginateValue) -1 );
+            }
+        });
+        $(tableId+'_wrapper').find("ul.pagination").find('.paginate_button.last').before(node[0]);
+    }; 
+
+</script>
+</body>
 </html>

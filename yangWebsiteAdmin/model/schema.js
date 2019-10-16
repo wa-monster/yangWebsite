@@ -16,15 +16,34 @@ let test2 = mongoose.model('test', schema);
 /**
  * 文章
  * */
-let schema2 = new mongoose.Schema({title:String,brief:String,content:String,status:Number,imgURL:String},{timestamps:true});
-let noteModel = mongoose.model('note',schema2);
+let schema2 = new mongoose.Schema({
+		title:String,
+		brief:String,
+		content:String,
+		status:Number,
+		imgURL:String,
+		noteType:String,
+		},{
+			timestamps:true
+		});
+	let noteModel = mongoose.model('notes',schema2);
 
 /**
  *
  * */
+let schema3 = new mongoose.Schema({
+		name:String,
+	  targeturl:String,
+	},{
+		timestamps:true,
+	});
+	let teachModel = mongoose.model('teachs',schema3);
+
+
 
 
 module.exports = {
 	test2,
 	noteModel,
+	teachModel
 }

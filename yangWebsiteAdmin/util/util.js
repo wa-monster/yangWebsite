@@ -46,6 +46,10 @@ module.exports = {
 				addsuc(true);
 				adddat(data);
 				break;
+			case 503:
+				addsuc(true);
+				adddat(data);
+				break;
 			case 102:
 				data ? null : data = '账号或密码错误';
 				addsuc(false);
