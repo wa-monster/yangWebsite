@@ -1,5 +1,5 @@
 <template>
-	<el-container id="manager">
+	<el-container id="manager" class="center-area">
 		<el-aside width="250px">
 			<el-menu
 				:router=true
@@ -12,14 +12,16 @@
 					<i class="el-icon-notebook-1"></i>
 					<span>新增文章</span>
 				</el-menu-item>
-				<el-menu-item index="add-user">
+				<el-menu-item index="add-teach">
 					<i class="el-icon-circle-plus-outline"></i>
-					<span>新增用户</span>
+					<span>新增技术</span>
 				</el-menu-item>
 			</el-menu>
 		</el-aside>
 		<el-main>
-			<router-view></router-view>
+			<el-scrollbar style="height:100%;">
+				<router-view></router-view>
+			</el-scrollbar>
 		</el-main>
 	</el-container>
 </template>
@@ -40,14 +42,10 @@
 </style>
 
 <style>
-	#manager{
-		height: calc(100% - 96px);
-	}
 	#manager .el-container{
 		height: 100%;
 	}
 	#manager .el-aside{
-		height: 100%;
 		overflow-y: auto;
 	}
 	#manager .el-aside .el-menu{
@@ -57,5 +55,9 @@
 	#manager .el-main{
 		height: 100%;
 		overflow-y: auto;
+		padding: 0;
+	}
+	.el-menu>.el-scrollbar>.el-scrollbar__wrap{
+		overflow-x: hidden;
 	}
 </style>

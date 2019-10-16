@@ -5,9 +5,11 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Manager from '@/components/Manager'
 import Note from '@/components/Note'
+import New from '@/components/NewTeach'
 import My from '@/base/My'
 import NewNote from '@/base/NewNote'
-import AddUser from '@/base/AddUser'
+import AddTeach from '@/base/AddTeach'
+
 
 
 /**
@@ -59,9 +61,9 @@ export default new Router({
 					component:NewNote,
 				},
 				{
-					path:'add-user',
-					name: 'add-user',
-					component:AddUser,
+					path:'add-teach',
+					name: 'add-teach',
+					component:AddTeach,
 				},
 			]
 		},
@@ -69,6 +71,11 @@ export default new Router({
 			path: '/note',
 			name: 'Note',
 			component: Note
+		},
+		{
+			path: '/New',
+			name: 'New',
+			component: New
 		}
   ]
 })

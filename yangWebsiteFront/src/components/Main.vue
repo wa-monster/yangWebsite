@@ -1,5 +1,5 @@
 <template>
-	<div id="main" v-loading.fullscreen.lock="loading">
+	<div id="main" class="center-area" v-loading.fullscreen.lock="loading">
 		<el-row :gutter="20">
 			<el-col :span="18">
 				<div class="new-info">
@@ -16,6 +16,9 @@
 							</div>
 							<div class="item-brief">
 								{{item.brief}}
+							</div>
+							<div class="item-tag">
+								<el-tag type="info">{{ selOptions[item.noteType] }}</el-tag>
 							</div>
 						</el-col>
 					</el-card>
@@ -62,7 +65,14 @@
 				loading: false,
 				total:1,
 				pageIndex:1,
-				pageSize:5
+				pageSize:5,
+				selOptions: {
+					'1':"html和css",
+					'2':"JavaScript",
+					'3':"react",
+					'4':"vue",
+					'5':"不知道的分类"
+				},
 			}
 		},
 		created(){
@@ -96,6 +106,7 @@
 					}
 					this.total = res.data.total;
 					this.dataList = res.data;
+
 				})
 			},
 			changePageIndex(pageIndex){
@@ -114,7 +125,6 @@
 	#main{
 		width: 1200px;
 		margin: 0 auto 0px;
-		min-height: calc(100% - 96px);
 	}
 	.new-info{
 		width: 100%;
@@ -152,6 +162,11 @@
 	.item-brief{
 		text-align: left;
 		text-indent: 1em;
+		max-height: 100px;
+		overflow: hidden;
+	}
+	.item-tag{
+		margin-top: 10px;
 	}
 	.box-card{
 		margin-top:20px ;
@@ -166,6 +181,7 @@
 </style>
 
 <style>
+
 	#main .eassy-list{
 		margin:20px 0;
 		cursor: pointer;

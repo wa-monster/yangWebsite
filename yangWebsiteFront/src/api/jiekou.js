@@ -11,12 +11,6 @@ axios.interceptors.response.use(res=>{
 })
 
 const api = {
-	//获取文章
-	getHomeNotes:function (params) {
-		return axios.get(baseUrl.develop+ '/gethomenotes',{
-			params:params
-		})
-	},
 	//测试mongodb
 	testMongoose:function (params) {
 		return axios.get(baseUrl.develop + '/testmongoose',{
@@ -46,14 +40,28 @@ const api = {
 			params,
 		})
 	},
+	//根据id获取文章
+	getNoteContent:function(params){
+		return axios.get(baseUrl.develop + '/note', {
+			params
+		})
+	},
 	//登陆
 	doLogin:function (params) {
 		return axios.post(baseUrl.develop + '/login',{
 			params,
 		})
 	},
+	//上传图片
 	doUploadImage:function (params) {
 		return axios.post(baseUrl.develop + '/upload', params)
+	},
+	//提交新技术
+	postNewTeach:function (params) {
+		return axios.post(baseUrl.develop + '/addnewteach',params)
+	},
+	getNewTEach:function () {
+		return axios.get(baseUrl.develop + '/newall')
 	}
 }
 

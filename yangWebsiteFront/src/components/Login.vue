@@ -16,6 +16,7 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		name: "Login",
 		data(){
@@ -35,6 +36,9 @@
 			}
 		},
 		methods:{
+			...mapMutations({
+				changeLogin:'ISLOGIN'
+			}),
 			login(){
 				this.$api.doLogin(this.loginForm).then(res=>{
 					if(!res.success){
@@ -42,6 +46,7 @@
 						return;
 					}
 					localStorage.setItem('yangToken',res.data.token);
+					this.changeLogin(true)
 					this.$router.push('/home')
 				})
 			}

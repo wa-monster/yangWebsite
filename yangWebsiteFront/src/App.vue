@@ -37,10 +37,13 @@
 		min-width: 1000px;
 		height: 100%;
 	}
-	.el-scrollbar__wrap{
+	#app>.el-scrollbar>.el-scrollbar__wrap{
 		overflow-x: hidden;
 	}
-	.el-scrollbar__view{
+	#app>.el-scrollbar>.el-scrollbar__wrap>.el-scrollbar__view{
 		height: 100%;
+	}
+	.center-area{
+		min-height: calc(100% - 96px);
 	}
 </style>

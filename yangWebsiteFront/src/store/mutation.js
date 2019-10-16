@@ -9,5 +9,8 @@ export default {
 	},
 	[types.C](state,payload){
 		state.c = payload
+	},
+	[types.ISLOGIN](state,payload){
+		state.isLogin = payload
 	}
 }

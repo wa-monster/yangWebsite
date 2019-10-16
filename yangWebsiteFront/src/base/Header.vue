@@ -28,15 +28,10 @@
 					<el-menu-item index="vue">vue</el-menu-item>
 					<el-menu-item index="no-type">不知道的分类</el-menu-item>
 				</el-submenu>
-				<el-submenu index="New">
-					<template slot="title">
-						<i class="el-icon-s-flag"></i>
-						<span>新技术</span>
-					</template>
-					<el-menu-item index="webgl">WebGl</el-menu-item>
-					<el-menu-item index="echart">echartjs</el-menu-item>
-					<el-menu-item index="dthree">d3.js</el-menu-item>
-				</el-submenu>
+				<el-menu-item index="New">
+					<i class="el-icon-s-flag"></i>
+					<span>新技术</span>
+				</el-menu-item>
 				<el-menu-item index="Maybe">
 					<i class="el-icon-s-opportunity"></i>
 					<span>Maybe</span>
@@ -50,7 +45,7 @@
 			<el-dropdown-menu slot="dropdown">
 				<el-dropdown-item icon="el-icon-user" command="/Manager/my">个人</el-dropdown-item>
 				<el-dropdown-item icon="el-icon-notebook-1" command="/Manager/new-note">新文章</el-dropdown-item>
-				<el-dropdown-item icon="el-icon-circle-plus-outline" command="/Manager/add-user">新增用户</el-dropdown-item>
+				<el-dropdown-item icon="el-icon-circle-plus-outline" command="/Manager/add-teach">新技术上传</el-dropdown-item>
 				<el-dropdown-item icon="el-icon-back" command="exit">退出</el-dropdown-item>
 			</el-dropdown-menu>
 		</el-dropdown>
@@ -62,6 +57,8 @@
 </template>
 
 <script>
+	import {mapMutations, mapState} from 'vuex'
+
 	export default {
 		name: "Header",
 		data(){
@@ -69,16 +66,21 @@
 				msg:'',
 				errorAvatar:'https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png',
 				avatar:"https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
-				isLogin:false,
 			}
 		},
 		created(){
-			let token = localStorage.getItem('yangToken');
-			if(token){
-				this.isLogin = true;
-			}
+				let token = localStorage.getItem('yangToken');
+				if(token){
+					this.changeLogin(true);
+				}
+		},
+		computed:{
+			...mapState(['isLogin'])
 		},
 		methods:{
+			...mapMutations({
+				changeLogin:'ISLOGIN',
+			}),
 			selectMenu(index,indexPath){
 				let linkPath = '/' + indexPath.join('/');
 				if(linkPath === this.$route.path){
@@ -91,7 +93,8 @@
 			},
 			avatarMenuClick(command){
 				if(command === 'exit'){
-					localStorage.removeItem('token')
+					localStorage.removeItem('yangToken');
+					this.changeLogin(false);
 					return
 				}
 				console.log(this.$router.push)

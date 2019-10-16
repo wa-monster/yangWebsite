@@ -8,7 +8,7 @@
 				:on-success="titleImgSuccess"
 				:before-upload="beforeTitleImg"
 			>
-				<img v-if="imageUrl" :src="imageUrl" class="avatar">
+				<img v-if="imageUrl" :src="imageUrl" class="avatar1">
 				<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 			</el-upload>
 		</el-form-item>
@@ -17,6 +17,16 @@
 		</el-form-item>
 		<el-form-item prop="brief" label="简述">
 			<el-input type="text" v-model="formInfo.brief"></el-input>
+		</el-form-item>
+		<el-form-item prop="noteType" label="分类">
+			<el-select type="text" v-model="formInfo.noteType">
+				<el-option
+					v-for="item in selOptions"
+					:key="item.value"
+					:label="item.label"
+					:value="item.value">
+				</el-option>
+			</el-select>
 		</el-form-item>
 		<el-form-item label="内容">
 			<Editor id="tinymce" v-model="tinymceHtml" :init="editorInit"></Editor>
@@ -63,12 +73,24 @@
 						{required:true,message:'请输入标题',trigger:'blur'},
 						{max:10,message:'长度在10个字符以下',trigger:'blur'},
 					],
-					brief:[{required:true,message:'请输入简介',trigger:'blur'},]
+					brief:[
+						{required:true,message:'请输入简介',trigger:'blur'},
+						{max:100,message:'长度在100个字符以下',trigger:'blur'},
+					],
+					noteType:[{required:true,message:'请选择分类',trigger:'change'},]
 				},
+				selOptions:[
+					{value:'1',label:"html和css"},
+					{value:'2',label:"JavaScript"},
+					{value:'3',label:"react"},
+					{value:'4',label:"vue"},
+					{value:'5',label:"不知道的分类"},
+				],
 				formInfo:{
 					title:'',
 					brief:'',
 					imgURL:'',
+					noteType:'',
 				}
 			}
 		},
@@ -78,11 +100,18 @@
 				if(!res.success){
 					this.customAlert(res.msg)
 				}
-				let {title, brief, content} = res.data;
+				if(res.code===503){
+					console.log('空着')
+					return
+				}
+				let {title, brief, content,noteType, imgURL} = res.data;
 				this.formInfo = {
 					title,
-					brief
-				}
+					brief,
+					noteType,
+					imgURL
+				};
+				this.imageUrl = imgURL
 				this.tinymceHtml = content
 			})
 		},
@@ -166,6 +195,7 @@
 
 <style scoped>
 	.note-form{
+		margin: 40px;
 	}
 	.note-form-btn{
 		float: right;
@@ -193,7 +223,7 @@
 		line-height: 178px;
 		text-align: center;
 	}
-	.avatar {
+	.avatar1 {
 		width: 178px;
 		height: 178px;
 		display: block;
